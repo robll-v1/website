@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>山东财经大学无畏契约瓦友社校园行抽奖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: url('f26d59c49e7963f7486f4a0692a31914.png') center/cover no-repeat fixed;
+        }
+        .layout {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 32px;
+            margin-top: 200px;
+            margin-bottom: 40px;
+            max-height: calc(100vh - 40px);
+        }
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+                gap: 0;
+                margin-top: 0;
+            }
+        }
+        /* 仅重写奖品展示部分，其余内容样式保持原样 */
+        .container {
+            background: rgba(180,150,255,0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(120,80,180,0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        .prize-board {
+            background: rgba(180,150,255,0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(120,80,180,0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 36px 32px;
+            margin-left: 32px;
+            max-width: 700px;
+        }
+        .prize-board-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #a67c52;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .prize-board-list {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(3, 1fr);
+          gap: 16px;
+        }
+        .prize-board-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(180,150,255,0.18);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(120,80,180,0.10);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 8px 4px;
+        }
+        .prize-board-img {
+          width: 120px;
+          height: 120px;
+          border-radius: 16px;
+          object-fit: contain;
+          margin-bottom: 8px;
+        }
+        .prize-board-name {
+            font-size: 0.95rem;
+            color: #7c4a1e;
+            text-align: center;
+        }
+        @media (max-width: 900px) {
+            .prize-board {
+                margin-left: 0;
+                margin-top: 24px;
+                max-width: 100%;
+            }
+            .prize-board-list {
+                grid-template-columns: 1fr 1fr;
+            }
+            .prize-board-img {
+                width: 28px;
+                height: 28px;
+            }
+        }
+        /* 页面结构请放在 <body> 标签内，样式只保留 CSS */
+        .footer {
+            margin-top: 32px;
+            color: #bfa77a;
+            font-size: 0.95rem;
+        }
+        .prize-list {
+            background: rgba(180,150,255,0.18);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(120,80,180,0.10);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            margin: 24px 0 0 0;
+            border-radius: 12px;
+            padding: 16px 8px;
+            font-size: 1rem;
+            color: #7c4a1e;
+            text-align: left;
+        }
+        .prize-list-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #a67c52;
+        }
+        .prize-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 6px 0;
+            padding: 0 8px;
+        }
+        .prize-name {
+            flex: 1;
+        }
+        .prize-count {
+            color: #d2691e;
+            font-weight: bold;
+            margin-left: 12px;
+        }
+        .prize-rate {
+            color: #bfa77a;
+            margin-left: 12px;
+            font-size: 0.95em;
+        }
+        .title {
+            font-size: 2rem;
+            color: #7c4a1e;
+            margin-bottom: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: rgba(180,150,255,0.18);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(120,80,180,0.10);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 12px 0;
+        }
+        .prize-box {
+            margin: 32px 0;
+            padding: 24px;
+            background: rgba(180,150,255,0.18);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(120,80,180,0.10);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            font-size: 1.5rem;
+            color: #7c4a1e;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+        }
+        .btn-lottery {
+            background: rgba(180,150,255,0.25);
+            color: #7c4a1e;
+            border: none;
+            border-radius: 24px;
+            padding: 16px 48px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(120,80,180,0.10);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-lottery:active {
+            background: rgba(180,150,255,0.35);
+            color: #5c2a8a;
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="container">
+            <div id="prizeBox" class="prize-box">点击下方按钮抽奖</div>
+            <button class="btn-lottery" id="lotteryBtn">开始抽奖</button>
+            <div class="prize-list">
+                <div class="prize-list-title">奖池剩余：</div>
+                <div id="prizeList"></div>
+            </div>
+            <div class="footer">© 2025 黑鲨&无畏契约活动 | 关注robll的代码小岛 --> http://154.40.45.131/</div>
+        </div>
+        <div class="prize-board">
+            <div class="prize-board-title">奖品展示</div>
+            <div class="prize-board-list">
+                <div class="prize-board-item">
+                    <img src="黑鲨699键盘.jpg" alt="黑鲨699元键盘" class="prize-board-img">
+                    <div class="prize-board-name">黑鲨699元键盘</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="充电头.jpg" alt="黑鲨89元充电头" class="prize-board-img">
+                    <div class="prize-board-name">黑鲨89元充电头</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="数据线.jpg" alt="黑鲨24元充电线" class="prize-board-img">
+                    <div class="prize-board-name">黑鲨24元充电线</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="无畏契约状态牌.jpg" alt="无畏契约状态牌" class="prize-board-img">
+                    <div class="prize-board-name">无畏契约状态牌</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="无畏契约卡套.jpg" alt="无畏契约卡套" class="prize-board-img">
+                    <div class="prize-board-name">无畏契约卡套</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="无畏契约嗲为你电话圈发套.png" alt="无畏契约电话线发圈" class="prize-board-img">
+                    <div class="prize-board-name">无畏契约电话线发圈</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="无畏契约钥匙扣.jpg" alt="无畏契约亚克力钥匙扣" class="prize-board-img">
+                    <div class="prize-board-name">无畏契约亚克力钥匙扣</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="黑鲨冰箱贴.jpg" alt="黑鲨冰箱贴" class="prize-board-img">
+                    <div class="prize-board-name">黑鲨冰箱贴</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="无畏契约贴纸.jpg" alt="无畏契约贴纸" class="prize-board-img">
+                    <div class="prize-board-name">无畏契约贴纸</div>
+                </div>
+                <div class="prize-board-item">
+                    <img src="黑鲨贴纸.jpg" alt="黑鲨贴纸" class="prize-board-img">
+                    <div class="prize-board-name">黑鲨贴纸</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 奖池设置
+        const defaultPrizes = [
+            { name: "黑鲨699元键盘", count: 0, rate: 0.01 },
+            { name: "黑鲨89元充电头", count: 8, rate: 0.02 },
+            { name: "黑鲨24元充电线", count: 15, rate: 0.03 },
+            { name: "无畏契约状态牌", count: 0, rate: 0.06 },
+            { name: "无畏契约卡套", count: 0, rate: 0.07 },
+            { name: "无畏契约电话线发圈", count: 2, rate: 0.08 },
+            { name: "无畏契约亚克力钥匙扣", count: 0, rate: 0.08 },
+            { name: "黑鲨冰箱贴", count: 42, rate: 0.15 },
+            { name: "无畏契约贴纸", count: 31, rate: 0.20 },
+            { name: "黑鲨贴纸", count: 79, rate: 0.30 }
+        ];
+
+        function loadPrizes() {
+            const saved = localStorage.getItem('prizes');
+            if (saved) {
+                try {
+                    const arr = JSON.parse(saved);
+                    if (Array.isArray(arr) && arr.length > 0) return arr;
+                } catch(e) {}
+            }
+            return JSON.parse(JSON.stringify(defaultPrizes));
+        }
+
+        let prizes = loadPrizes();
+
+        function savePrizes() {
+            localStorage.setItem('prizes', JSON.stringify(prizes));
+        }
+
+        function updatePrizeList() {
+            const prizeList = document.getElementById('prizeList');
+            prizeList.innerHTML = prizes.map(p =>
+                `<div class="prize-item">
+                    <span class="prize-name">${p.name}</span>
+                    <span class="prize-count">${p.count}份</span>
+                    <span class="prize-rate">中奖率:${Math.round(p.rate*100)}%</span>
+                </div>`
+            ).join('');
+            savePrizes();
+        }
+
+    updatePrizeList();
+
+        const prizeBox = document.getElementById('prizeBox');
+        const lotteryBtn = document.getElementById('lotteryBtn');
+
+        function getPrizeIndex() {
+            // 固定概率抽取，不补充“谢谢参与”，奖品抽完即移除
+            let totalRate = prizes.reduce((sum, p) => p.count > 0 ? sum + p.rate : sum, 0);
+            let r = Math.random() * totalRate;
+            let acc = 0;
+            for (let i = 0; i < prizes.length; i++) {
+                if (prizes[i].count > 0) {
+                    acc += prizes[i].rate;
+                    if (r < acc) return i;
+                }
+            }
+            return -1; // 理论上不会出现
+        }
+
+        lotteryBtn.onclick = function() {
+            lotteryBtn.disabled = true;
+            prizeBox.classList.remove('active');
+            prizeBox.textContent = "抽奖中...";
+            let count = 0;
+            let interval = setInterval(() => {
+                // 动画随机显示奖品
+                let idx = Math.floor(Math.random() * prizes.length);
+                prizeBox.textContent = prizes[idx].name;
+                count++;
+                if (count > 15) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        let prizeIdx = getPrizeIndex();
+                        if (prizeIdx !== -1) {
+                            prizeBox.textContent = prizes[prizeIdx].name + "！";
+                            prizes[prizeIdx].count--;
+                            if (prizes[prizeIdx].count === 0) {
+                                prizes.splice(prizeIdx, 1);
+                            }
+                            updatePrizeList();
+                        } else {
+                            prizeBox.textContent = "奖品已抽完！";
+                        }
+                        prizeBox.classList.add('active');
+                        lotteryBtn.disabled = false;
+                    }, 300);
+                }
+            }, 80);
+        };
+    </script>
+</body>
+</html>
